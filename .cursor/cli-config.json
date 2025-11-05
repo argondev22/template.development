@@ -5,8 +5,11 @@
       "Shell(ls)",
       "Shell(mkdir)",
       "Shell(touch)",
-      "Shell(cp)"
+      "Shell(cp)",
+      "Shell(mv)"
     ],
-    "deny": []
+    "deny": [
+      "Shell(rm)"
+    ]
   }
 }
