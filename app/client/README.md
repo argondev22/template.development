@@ -15,7 +15,7 @@ This client application is a simple web application that displays "Hello Templat
 
 ## 📁 Directory Structure
 
-```
+```plaintext
 client/
 ├── public/
 │   └── index.html          # HTML template
