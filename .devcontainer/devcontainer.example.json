@@ -4,7 +4,10 @@
   "features": {
     "ghcr.io/devcontainers/features/common-utils:2.5.3": {},
     "ghcr.io/devcontainers/features/docker-in-docker:2": {},
-    "ghcr.io/devcontainers/features/git:1": {}
+    "ghcr.io/devcontainers/features/git:1": {},
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "lts"
+    }
   },
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,type=bind",
@@ -14,6 +17,10 @@
     "vscode": {
       "extensions": [
         "editorconfig.editorconfig",
+        "esbenp.prettier-vscode",
+        "davidanson.vscode-markdownlint",
+        "redhat.vscode-yaml",
+        "streetsidesoftware.code-spell-checker",
         "bierner.markdown-mermaid",
         "cweijan.vscode-database-client2",
         "cweijan.dbclient-jdbc",

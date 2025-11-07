@@ -1,87 +1,87 @@
 # Template Utils
 
-## Overview
-
-A comprehensive project template that provides a ready-to-use development environment with modern tooling and best practices. This template accelerates project setup by including pre-configured development containers, GitHub workflows, and standardized templates for issues and pull requests.
+A comprehensive template repository for creating new GitHub projects with pre-configured development environment and best practices.
 
 ## Features
 
-### 🚀 Development Environment Template
-- **Dev Containers**: Instant development environment setup with VSCode
-- **Docker Compose**: Easy multi-service environment management
-- **GitHub Templates**: Standardized issue and PR templates
+- **Cross-platform development support** - Configured for macOS, Windows, and Linux
+- **VS Code integration** - Pre-configured settings, extensions, and DevContainer support
+- **GitHub templates** - Issue and Pull Request templates for better project management
+- **Code formatting** - EditorConfig for consistent code style across editors
+- **Docker support** - DevContainer configuration for consistent development environments
 
-### 📱 Sample Application
-- **Full-Stack Architecture**: 3-tier architecture with React + FastAPI + PostgreSQL
-- **Real-time Features**: Instant data updates with button clicks
-- **Data Persistence**: Click history management with PostgreSQL
-- **API Documentation**: Auto-generated documentation with Swagger UI
-- **Responsive UI**: Modern web interface
+## What's Included
 
-## Architecture
+### Development Environment
 
-```mermaid
-sequenceDiagram
-    autonumber
-    actor CL as Client (React)
-    participant SV as Server (FastAPI)
-    participant DB as Database (PostgreSQL)
-    CL->>SV: HTTP Request (API Call)
-    SV->>DB: SQL Query
-    DB->>SV: Query Result
-    SV->>CL: JSON Response
-```
+- `.editorconfig` - Consistent code formatting across different editors
+- `.vscode/` - VS Code specific settings and recommended extensions
+- `.devcontainer/` - Docker-based development environment configuration
 
-## Directory Structure
+### GitHub Integration
 
-```
-.
-├── .devcontainer/                # Development container configuration
-├── .github/                      # GitHub configuration
-│   ├── ISSUE_TEMPLATE/           # GitHub issue templates
-│   └── PULL_REQUEST_TEMPLATE/    # GitHub PR templates
-├── .vscode/                      # VSCode configuration
-├── app/                          # Complete application directory (source code, Docker configs, etc.)
-│   ├── client/                   # React frontend application
-│   └── server/                   # FastAPI backend application
-├── bin/                          # Utility scripts
-└── docs/                         # Project documentation
-```
+- `.github/ISSUE_TEMPLATE/` - Standardized issue templates
+- `.github/PULL_REQUEST_TEMPLATE.md` - Pull request template
+- `.github/workflows/` - Ready for CI/CD workflow configurations
 
-> **📖 For detailed information about each service, please refer to their respective README files:**
-> - **Client (React)**: [`app/client/README.md`](app/client/README.md)
-> - **Server (FastAPI)**: [`app/server/README.md`](app/server/README.md)
+### Project Configuration
+
+- `.gitignore` - Comprehensive ignore rules for macOS, Windows, and Linux
+- `src/` - Source code directory structure
 
 ## Getting Started
 
-### Prerequisites
+1. **Use this template** - Click "Use this template" button on GitHub
+2. **Clone your new repository**
 
-- [Docker](https://www.docker.com/)
-- [Dev Containers](https://containers.dev/) extension (`anysphere.remote-containers`) for VSCode
-- UNIX/Linux-based OS (Windows users should use WSL2)
-
-### Quick Start
-
-1. **Clone the repository**
    ```bash
-   git clone <repo-url> <project-name>
-   cd <project-name>
+   git clone https://github.com/yourusername/your-new-project.git
+   cd your-new-project
    ```
 
-2. **Initialize the project**
+3. **Install dependencies**
+
    ```bash
-   make init
+   npm install
    ```
 
-3. **Open in Dev Container**
-   - Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) in VSCode
-   - Type `Dev Containers: Open Folder in Container`
-   - Select and execute the command
+   This will install the required development tools (Husky, Prettier, Commitlint, etc.).
 
-4. **Start the development environment**
-   ```bash
-   make up
-   ```
+4. **Customize for your project**
+   - Update this README.md with your project details
+   - Modify `.devcontainer/devcontainer.example.json` and rename to `devcontainer.json`
+   - Add your source code to the `src/` directory
+   - Configure GitHub workflows in `.github/workflows/`
 
-5. **Access your application**
-   - Open your browser and navigate to: http://localhost:3000
+## DevContainer Setup
+
+This template includes a DevContainer configuration for consistent development environments:
+
+1. Copy `.devcontainer/devcontainer.example.json` to `.devcontainer/devcontainer.json`
+2. Customize the configuration as needed
+3. Open in VS Code and select "Reopen in Container"
+
+## Customization
+
+### Issue Templates
+
+Edit `.github/ISSUE_TEMPLATE/task.md` to match your project's needs.
+
+### Pull Request Template
+
+Modify `.github/PULL_REQUEST_TEMPLATE.md` for your workflow requirements.
+
+### VS Code Extensions
+
+Update `.vscode/extensions.json` with extensions specific to your project type.
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## License
+
+This template is provided as-is for creating new projects. Add your own license file as needed.
