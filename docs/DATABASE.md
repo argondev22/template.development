@@ -1,1 +1,1 @@
-# Detabase Design
+# Database Design
