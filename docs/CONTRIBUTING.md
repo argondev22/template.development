@@ -7,3 +7,4 @@
   - Format: `<type>(<scope>): <description>`
   - Types: "feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore", "revert"
   - Example: `feat(auth): add JWT authentication`
+- For detailed configuration, see [`.commitlintrc.json`](../.commitlintrc.json)
