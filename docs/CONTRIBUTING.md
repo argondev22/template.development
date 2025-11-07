@@ -1,0 +1,9 @@
+# Contribution Rules
+
+## Commit Message Guidelines
+
+- Use clear and descriptive commit messages.
+- Follow the Conventional Commits specification:
+  - Format: `<type>(<scope>): <description>`
+  - Types: "feat", "fix", "docs", "style", "refactor", "perf", "test", "build", "ci", "chore", "revert"
+  - Example: `feat(auth): add JWT authentication`
