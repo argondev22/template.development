@@ -33,9 +33,9 @@ client/
 
 ### Environment Variables in Docker Compose
 
-| Variable | Default | Description |
-|----------|---------|-------------|
-| `CHOKIDAR_USEPOLLING` | `true` | File change detection method (required in Docker containers) |
+| Variable              | Default | Description                                                  |
+| --------------------- | ------- | ------------------------------------------------------------ |
+| `CHOKIDAR_USEPOLLING` | `true`  | File change detection method (required in Docker containers) |
 
 ### Development Configuration
 
@@ -89,12 +89,14 @@ The proxy configuration in `package.json` automatically forwards API calls to th
 ## 🎮 Features
 
 ### Main Features
+
 - **Button Click**: Click the "Click Me!" button
 - **Message Display**: Shows "Hello Template! 🎉" message
 - **Click Counter**: Real-time click count updates
 - **Data Persistence**: Click history is saved to database
 
 ### UI/UX Features
+
 - Responsive design
 - Simple and intuitive interface
 - Real-time updates
@@ -118,6 +120,7 @@ npm run eject
 ## 🐳 Docker Configuration
 
 ### Dockerfile
+
 ```dockerfile
 FROM node:18-alpine
 WORKDIR /app
@@ -129,6 +132,7 @@ CMD ["npm", "start"]
 ```
 
 ### Development Volume Mounts
+
 - Source code: `./client:/app`
 - node_modules: `/app/node_modules` (anonymous volume)
 
@@ -137,6 +141,7 @@ CMD ["npm", "start"]
 ### Common Issues
 
 1. **Port 3000 already in use**
+
    ```bash
    # Check process
    lsof -i :3000
@@ -149,6 +154,7 @@ CMD ["npm", "start"]
    - Check proxy configuration in `package.json`
 
 3. **Dependency errors**
+
    ```bash
    # Remove and reinstall dependencies
    rm -rf node_modules package-lock.json
@@ -172,11 +178,13 @@ docker-compose logs -f client
 ## 🎯 Development Tips
 
 ### Code Structure
+
 - `App.js`: Main logic and UI
 - `App.css`: Styling
 - API communication using Axios
 
 ### Extension Ideas
+
 - Add state management libraries (Redux, Zustand, etc.)
 - Integrate UI component libraries (Material-UI, Chakra UI, etc.)
 - Migrate to TypeScript

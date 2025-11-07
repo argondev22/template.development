@@ -30,14 +30,14 @@ server/
 
 ### Required Environment Variables
 
-| Variable | Example | Description |
-|----------|---------|-------------|
+| Variable       | Example                                           | Description                        |
+| -------------- | ------------------------------------------------- | ---------------------------------- |
 | `DATABASE_URL` | `postgresql://postgres:postgres@db:5432/postgres` | PostgreSQL database connection URL |
 
 ### Optional Environment Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
+| Variable     | Default         | Description               |
+| ------------ | --------------- | ------------------------- |
 | `PYTHONPATH` | `/app/src:/app` | Python module search path |
 
 ### Docker Compose Configuration Example
@@ -65,6 +65,7 @@ docker-compose up --build
 ```
 
 Access the server:
+
 - API: http://localhost:8000
 - Documentation: http://localhost:8000/docs
 
@@ -94,18 +95,20 @@ uvicorn src.main:app --reload --host 0.0.0.0 --port 8000
 
 ### Basic Information
 
-| Endpoint | Method | Description |
-|----------|--------|-------------|
-| `/` | GET | Get API information |
-| `/health` | GET | Health check |
-| `/docs` | GET | Swagger UI (API documentation) |
+| Endpoint  | Method | Description                    |
+| --------- | ------ | ------------------------------ |
+| `/`       | GET    | Get API information            |
+| `/health` | GET    | Health check                   |
+| `/docs`   | GET    | Swagger UI (API documentation) |
 
 ### Hello Template API
 
 #### POST /api/hello
+
 Records button clicks and returns message with click count.
 
 **Response Example:**
+
 ```json
 {
   "message": "Hello Template! 🎉",
@@ -114,9 +117,11 @@ Records button clicks and returns message with click count.
 ```
 
 #### GET /api/stats
+
 Retrieves click statistics.
 
 **Response Example:**
+
 ```json
 {
   "total_clicks": 1,
@@ -128,10 +133,10 @@ Retrieves click statistics.
 
 ### click_logs Table
 
-| Column | Data Type | Constraint | Description |
-|--------|-----------|------------|-------------|
-| id | INTEGER | PRIMARY KEY | Click ID (auto-increment) |
-| clicked_at | TIMESTAMP | DEFAULT NOW() | Click timestamp |
+| Column     | Data Type | Constraint    | Description               |
+| ---------- | --------- | ------------- | ------------------------- |
+| id         | INTEGER   | PRIMARY KEY   | Click ID (auto-increment) |
+| clicked_at | TIMESTAMP | DEFAULT NOW() | Click timestamp           |
 
 ### Database Configuration
 
@@ -176,6 +181,7 @@ docker-compose exec db psql -U postgres -d postgres -c "SELECT * FROM click_logs
 ## 🐳 Docker Configuration
 
 ### Dockerfile
+
 ```dockerfile
 FROM python:3.11-slim
 WORKDIR /app
@@ -187,6 +193,7 @@ CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
 ### Development Volume Mounts
+
 - Source code: `./server:/app`
 
 ## 🔍 Troubleshooting
@@ -194,6 +201,7 @@ CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
 ### Common Issues
 
 1. **Database connection error**
+
    ```bash
    # Check database status
    docker-compose exec db pg_isready -U postgres
@@ -206,6 +214,7 @@ CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
    ```
 
 2. **Port 8000 already in use**
+
    ```bash
    # Check process
    lsof -i :8000
@@ -214,6 +223,7 @@ CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
    ```
 
 3. **Python dependency errors**
+
    ```bash
    # Recreate virtual environment
    rm -rf venv
@@ -242,17 +252,20 @@ docker-compose logs server | grep ERROR
 ## 🎯 Architecture Details
 
 ### Layer Structure
+
 1. **API Layer**: HTTP endpoints via FastAPI
 2. **Business Logic Layer**: Data processing and business logic
 3. **Data Access Layer**: Database access via SQLAlchemy
 
 ### Key Components
+
 - **FastAPI App**: Main application
 - **SQLAlchemy ORM**: Database model definitions
 - **Pydantic Models**: API response/request type definitions
 - **CORS Middleware**: Cross-origin request handling
 
 ### Security Features
+
 - CORS configuration with proper origin restrictions
 - SQL injection protection (ORM usage)
 - Input validation (Pydantic)
@@ -260,12 +273,14 @@ docker-compose logs server | grep ERROR
 ## 🚀 Extension Ideas
 
 ### Feature Extensions
+
 - Authentication & authorization (JWT)
 - API rate limiting
 - Enhanced logging capabilities
 - Metrics collection (Prometheus, etc.)
 
 ### Infrastructure Extensions
+
 - Database migrations (Alembic)
 - Test automation (pytest)
 - API load testing
