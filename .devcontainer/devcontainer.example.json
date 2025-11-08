@@ -22,6 +22,7 @@
         "redhat.vscode-yaml",
         "streetsidesoftware.code-spell-checker",
         "bierner.markdown-mermaid",
+        "42crunch.vscode-openapi",
         "cweijan.vscode-database-client2",
         "cweijan.dbclient-jdbc",
         "ms-python.python"
