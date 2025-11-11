@@ -2,7 +2,7 @@
   "version": "0.2",
   "language": "en,en-US",
   "words": [
-    // プロジェクト固有の単語をここに追加
+    // Add project-specific words here
     "devcontainer",
     "editorconfig",
     "gitignore",
@@ -16,10 +16,12 @@
     "bierner",
     "esbenp",
     "venv",
-    "cli"
+    "cli",
+    "dylib",
+    "lfs"
   ],
   "ignorePaths": [
-    // リント対象外のパス
+    // Paths to exclude from linting
     "node_modules/**",
     "dist/**",
     "build/**",
@@ -43,20 +45,20 @@
     "*.pdf"
   ],
   "ignoreRegExpList": [
-    // 正規表現でマッチするパターンを無視
+    // Ignore patterns matched by regular expressions
     "\\bhttps?://[^\\s]+",
     "\\b[A-Z0-9]{8,}\\b",
     "/\\*[\\s\\S]*?\\*/",
     "```[\\s\\S]*?```"
   ],
   "dictionaries": [
-    // 使用する辞書
+    // Dictionaries to use
     "companies",
     "softwareTerms",
     "misc"
   ],
   "enabledLanguageIds": [
-    // スペルチェックを有効にする言語
+    // Languages to enable spell checking
     "markdown",
     "plaintext",
     "text",
