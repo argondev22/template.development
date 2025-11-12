@@ -36,7 +36,7 @@ sequenceDiagram
 
 ## Directory Structure
 
-```plaintext
+```text
 .
 ├── .devcontainer/                # Development container configuration
 ├── .github/                      # GitHub configuration

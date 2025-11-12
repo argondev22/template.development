@@ -17,7 +17,7 @@ This server application processes button click requests from clients, stores cli
 
 ## 📁 Directory Structure
 
-```plaintext
+```text
 server/
 ├── src/
 │   └── main.py            # FastAPI application
