@@ -20,7 +20,9 @@
     "dylib",
     "lfs",
     "fastify",
-    "usr"
+    "usr",
+    "bak",
+    "WSL"
   ],
   "ignorePaths": [
     // Paths to exclude from linting
