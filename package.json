@@ -1,9 +1,8 @@
 {
-  "name": "template.development",
-  "version": "1.0.0",
   "scripts": {
     "prepare": "husky",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
   },
   "devDependencies": {
     "@commitlint/cli": "^20.1.0",
