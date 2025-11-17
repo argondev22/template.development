@@ -1,1 +1,1 @@
-# GitHub Copilot PRレビュー指示
+# GitHub Copilot PR Review Instructions
