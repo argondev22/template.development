@@ -43,6 +43,7 @@ Format: `<type>: <subject>`
 Allowed types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`, `deps`, `docker`
 
 Rules:
+
 - Type is required, lowercase only
 - Subject is required, no period at the end
 - Header max 100 characters
@@ -81,3 +82,20 @@ All project documentation lives in `docs/`. When making changes that affect setu
 - Run `npm run format:check` before committing to ensure CI will pass
 - Follow the PR template in `.github/PULL_REQUEST_TEMPLATE.md`
 - Keep documentation in sync with code changes
+- When implementation changes design, requirements, or specifications that differ from existing documentation, always update the relevant docs (`docs/`, `CLAUDE.md`, etc.) to match the actual state. Do not leave stale documentation — update docs in the same commit as the code change or immediately after
+
+## Memory Management
+
+Save important information gathered from conversations with the user as memory files under `~/.claude/projects/-Users-hyouga-Source-template-development/memory/`:
+
+- **User preferences & policies**: Coding style, tool usage, workflow preferences and instructions
+- **Project-specific decisions**: Architecture decisions, technology choices and their rationale, constraints
+- **Recurring feedback**: Corrections, "do it this way" requests that should persist across sessions
+- **External resource references**: Related documentation, tickets, dashboard URLs, etc.
+
+When saving, follow these rules:
+
+- Do not save information derivable from the code itself (structure, patterns, etc.)
+- Do not save information available from git history
+- Do not save ephemeral task state
+- Check existing memories before saving to avoid duplicates
