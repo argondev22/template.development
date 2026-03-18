@@ -44,7 +44,7 @@ argument-hint: "[追加したいコマンドの説明 (optional)]"
 
 ```makefile
 target: ## 日本語の説明
-	@コマンド
+ @コマンド
 ```
 
 ルール:
