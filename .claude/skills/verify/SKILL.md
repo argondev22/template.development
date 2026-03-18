@@ -23,17 +23,17 @@ Mode: $ARGUMENTS (default: full)
 
 Scan for available tools by checking config files:
 
-| File | Tool |
-|------|------|
-| `package.json` (build script) | Build |
-| `tsconfig.json` | Type check |
-| `.prettierrc*` | Prettier |
-| `.eslintrc*` / `eslint.config.*` | ESLint |
-| `.markdownlint*` | markdownlint |
-| `jest.config.*` / `vitest.config.*` | Tests |
-| `pyproject.toml` | Python tools |
-| `Cargo.toml` | Rust tools |
-| `go.mod` | Go tools |
+| File                                | Tool         |
+| ----------------------------------- | ------------ |
+| `package.json` (build script)       | Build        |
+| `tsconfig.json`                     | Type check   |
+| `.prettierrc*`                      | Prettier     |
+| `.eslintrc*` / `eslint.config.*`    | ESLint       |
+| `.markdownlint*`                    | markdownlint |
+| `jest.config.*` / `vitest.config.*` | Tests        |
+| `pyproject.toml`                    | Python tools |
+| `Cargo.toml`                        | Rust tools   |
+| `go.mod`                            | Go tools     |
 
 Only run checks for tools that actually exist in the project.
 

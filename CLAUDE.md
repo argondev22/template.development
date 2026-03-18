@@ -1,101 +1,131 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code when working with this repository.
+このファイルは、Claude Code がこのリポジトリで作業する際のガイダンスを提供する。
 
-## Project Overview
+## プロジェクト概要
 
-This is a **development template repository** that provides standardized project structure, tooling, and CI/CD configuration. It is designed to be cloned as a starting point for new projects.
+これは**開発テンプレートリポジトリ**であり、標準化されたプロジェクト構成、ツール、CI/CD 設定を提供する。新規プロジェクトの出発点としてクローンして使用する。
 
-## Repository Structure
+## リポジトリ構成
 
-- **app/** - Application source code
-- **bin/** - Project initialization scripts (`make init`)
-- **docs/** - Project documentation (API, Architecture, Setup, etc.)
-- **infra/** - Infrastructure configuration
-- **.github/** - GitHub Actions workflows, PR templates, issue templates
-- **.husky/** - Git hooks (commit-msg with commitlint)
+- **app/** - アプリケーションソースコード
+- **bin/** - プロジェクト初期化スクリプト (`make init`)
+- **docs/** - プロジェクトドキュメント (API、アーキテクチャ、セットアップなど)
+- **infra/** - インフラ構成
+- **.github/** - GitHub Actions ワークフロー、PR テンプレート、Issue テンプレート
+- **.husky/** - Git フック (commitlint による commit-msg 検証)
 
-## Commands
+## コマンド
 
 ```bash
-# Project initialization
+# プロジェクト初期化
 make init
 
-# Docker operations
-make build    # Build containers
-make up       # Start containers
-make down     # Stop containers
-make logs     # View container logs
-make clean    # Prune Docker resources
+# Docker 操作
+make build    # コンテナをビルド
+make up       # コンテナを起動
+make down     # コンテナを停止
+make logs     # コンテナログを表示
+make clean    # Docker リソースを削除
 
-# Formatting & Linting
-npm run format          # Run Prettier + markdownlint fix
-npm run format:check    # Check formatting (CI)
-npm run lint:markdown   # Lint markdown files
+# フォーマット & リント
+npm run format          # Prettier + markdownlint で自動修正
+npm run format:check    # フォーマットチェック (CI用)
+npm run lint:markdown   # Markdown のリント
 ```
 
-## Commit Conventions
+## コミット規約
 
-This project uses **Conventional Commits** enforced by commitlint + husky.
+このプロジェクトでは commitlint + husky で **Conventional Commits** を強制している。
 
-Format: `<type>: <subject>`
+フォーマット: `<type>: <subject>`
 
-Allowed types: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`, `deps`, `docker`
+使用可能な type: `feat`, `fix`, `docs`, `style`, `refactor`, `perf`, `test`, `build`, `ci`, `chore`, `revert`, `deps`, `docker`
 
-Rules:
+ルール:
 
-- Type is required, lowercase only
-- Subject is required, no period at the end
-- Header max 100 characters
-- Body/footer lines max 100 characters
+- type は必須、小文字のみ
+- subject は必須、末尾にピリオドを付けない
+- ヘッダーは最大 100 文字
+- body/footer の各行は最大 100 文字
 
-## Code Style
+## コードスタイル
 
-- **Indent:** 2 spaces (tabs for Makefile)
-- **Line endings:** LF
-- **Charset:** UTF-8
-- **Trailing whitespace:** trimmed (except Markdown)
-- **Final newline:** always
-- **Prettier:** printWidth 100, semicolons, double quotes, trailing commas (ES5)
+- **インデント:** スペース 2 つ (Makefile はタブ)
+- **改行コード:** LF
+- **文字コード:** UTF-8
+- **末尾の空白:** 削除 (Markdown を除く)
+- **ファイル末尾の改行:** 常に付与
+- **Prettier:** printWidth 100、セミコロンあり、ダブルクォート、トレイリングカンマ (ES5)
 
 ## CI/CD
 
-GitHub Actions runs on push to `main` and PRs:
+GitHub Actions は `main` への push と PR で実行される:
 
-- **Prettier** - Code formatting check
-- **markdownlint** - Markdown linting
-- **yamllint** - YAML linting
-- **actionlint** - GitHub Actions workflow linting
-- **Dependabot** - Dependency updates with auto-merge
+- **Prettier** - コードフォーマットチェック
+- **markdownlint** - Markdown リント
+- **yamllint** - YAML リント
+- **actionlint** - GitHub Actions ワークフローリント
+- **Dependabot** - 依存関係の自動更新とオートマージ
 
-## Documentation
+## ドキュメント
 
-All project documentation lives in `docs/`. When making changes that affect setup, architecture, or APIs, update the corresponding doc file:
+プロジェクトドキュメントは `docs/` に配置する。セットアップ、アーキテクチャ、API に影響する変更を行った場合は、対応するドキュメントも更新すること:
 
-- `docs/SETUP.md` - Setup instructions
-- `docs/ARCHITECTURE.md` - Architecture decisions
-- `docs/API.yml` - API specifications
-- `docs/CONTRIBUTING.md` - Contribution guidelines
+- `docs/SETUP.md` - セットアップ手順
+- `docs/ARCHITECTURE.md` - アーキテクチャ決定事項
+- `docs/API.yml` - API 仕様
+- `docs/CONTRIBUTING.md` - コントリビューションガイドライン
 
-## Working Guidelines
+## 作業ガイドライン
 
-- Run `npm run format:check` before committing to ensure CI will pass
-- Follow the PR template in `.github/PULL_REQUEST_TEMPLATE.md`
-- Keep documentation in sync with code changes
-- When implementation changes design, requirements, or specifications that differ from existing documentation, always update the relevant docs (`docs/`, `CLAUDE.md`, etc.) to match the actual state. Do not leave stale documentation — update docs in the same commit as the code change or immediately after
+- コミット前に `npm run format:check` を実行して CI が通ることを確認する
+- `.github/PULL_REQUEST_TEMPLATE.md` の PR テンプレートに従う
+- コード変更に合わせてドキュメントを常に同期させる
+- 実装がドキュメントの設計・要件・仕様と異なる場合は、関連ドキュメント (`docs/`, `CLAUDE.md` など) を必ず更新する。古いドキュメントを放置しない — コード変更と同じコミット、または直後に更新する
 
-## Memory Management
+## 秘密情報の取り扱い
 
-Save important information gathered from conversations with the user as memory files under `~/.claude/projects/-Users-hyouga-Source-template-development/memory/`:
+秘密情報は**絶対にコミットや GitHub へのアップロードをしてはならない**。以下のルールを厳守すること:
 
-- **User preferences & policies**: Coding style, tool usage, workflow preferences and instructions
-- **Project-specific decisions**: Architecture decisions, technology choices and their rationale, constraints
-- **Recurring feedback**: Corrections, "do it this way" requests that should persist across sessions
-- **External resource references**: Related documentation, tickets, dashboard URLs, etc.
+### 対象ファイル
 
-When saving, follow these rules:
+以下のファイルはコミット禁止。`git add` の対象にしない:
 
-- Do not save information derivable from the code itself (structure, patterns, etc.)
-- Do not save information available from git history
-- Do not save ephemeral task state
-- Check existing memories before saving to avoid duplicates
+- `.env`, `.env.*` (`.env.example` を除く)
+- `credentials.json`, `serviceAccountKey.json` などの認証情報ファイル
+- `*.pem`, `*.key`, `*.p12` などの秘密鍵・証明書
+- `*secret*`, `*token*` を含むファイル名
+
+### 対象コンテンツ
+
+以下の値をソースコードやドキュメントにハードコードしない:
+
+- API キー、アクセストークン、シークレット
+- パスワード、接続文字列
+- AWS / GCP / Azure のクレデンシャル
+- SSH 秘密鍵
+- JWT シークレット
+
+### 運用ルール
+
+- 秘密情報は環境変数または Secret Manager 経由で注入する
+- テンプレートやサンプルには必ずダミー値 (`your-api-key-here` など) を使用する
+- ユーザーに秘密情報を含むファイルのコミットを求められた場合は、リスクを警告し代替案を提示する
+- `git diff` や `git status` の出力に秘密情報が含まれていないか常に確認する
+
+## メモリ管理
+
+ユーザーとの会話で得た重要な情報を `.claude/memory/` 配下にメモリファイルとして保存する:
+
+- **ユーザーの好み・ポリシー**: コーディングスタイル、ツール使用法、ワークフローの好みと指示
+- **プロジェクト固有の決定事項**: アーキテクチャ決定、技術選定とその理由、制約
+- **繰り返しのフィードバック**: 修正指示、「こうやってくれ」というセッションをまたいで残すべきリクエスト
+- **外部リソースの参照先**: 関連ドキュメント、チケット、ダッシュボードの URL など
+
+保存時のルール:
+
+- コード自体から読み取れる情報 (構造、パターンなど) は保存しない
+- git 履歴から取得できる情報は保存しない
+- 一時的なタスク状態は保存しない
+- 重複を避けるため、保存前に既存のメモリを確認する

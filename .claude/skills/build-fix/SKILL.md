@@ -11,15 +11,15 @@ Fix build and type errors incrementally with minimal changes.
 
 ### 1. Detect build system
 
-| File | Command |
-|------|---------|
-| `package.json` (build script) | `npm run build` |
-| `tsconfig.json` (no build script) | `npx tsc --noEmit` |
-| `Cargo.toml` | `cargo build 2>&1` |
-| `go.mod` | `go build ./...` |
-| `pyproject.toml` | `python -m py_compile` or `mypy .` |
-| `pom.xml` | `mvn compile` |
-| `build.gradle` | `./gradlew compileJava` |
+| File                              | Command                            |
+| --------------------------------- | ---------------------------------- |
+| `package.json` (build script)     | `npm run build`                    |
+| `tsconfig.json` (no build script) | `npx tsc --noEmit`                 |
+| `Cargo.toml`                      | `cargo build 2>&1`                 |
+| `go.mod`                          | `go build ./...`                   |
+| `pyproject.toml`                  | `python -m py_compile` or `mypy .` |
+| `pom.xml`                         | `mvn compile`                      |
+| `build.gradle`                    | `./gradlew compileJava`            |
 
 ### 2. Run build and parse errors
 

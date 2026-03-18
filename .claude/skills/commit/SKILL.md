@@ -49,21 +49,21 @@ Warn the user if any of these are detected.
 
 Choose the appropriate type based on the changes:
 
-| Type | When to use |
-|------|-------------|
-| `feat` | New feature or capability |
-| `fix` | Bug fix |
-| `docs` | Documentation only |
-| `style` | Formatting, whitespace (no logic change) |
-| `refactor` | Code restructuring (no feature/fix) |
-| `perf` | Performance improvement |
-| `test` | Adding or updating tests |
-| `build` | Build system or external dependencies |
-| `ci` | CI/CD configuration |
-| `chore` | Maintenance tasks |
-| `revert` | Reverting a previous commit |
-| `deps` | Dependency updates |
-| `docker` | Docker configuration changes |
+| Type       | When to use                              |
+| ---------- | ---------------------------------------- |
+| `feat`     | New feature or capability                |
+| `fix`      | Bug fix                                  |
+| `docs`     | Documentation only                       |
+| `style`    | Formatting, whitespace (no logic change) |
+| `refactor` | Code restructuring (no feature/fix)      |
+| `perf`     | Performance improvement                  |
+| `test`     | Adding or updating tests                 |
+| `build`    | Build system or external dependencies    |
+| `ci`       | CI/CD configuration                      |
+| `chore`    | Maintenance tasks                        |
+| `revert`   | Reverting a previous commit              |
+| `deps`     | Dependency updates                       |
+| `docker`   | Docker configuration changes             |
 
 ### 5. Write commit message
 

@@ -28,7 +28,7 @@ Arguments: $ARGUMENTS
 echo "$(date +%Y-%m-%d-%H:%M) | <name> | $(git rev-parse --short HEAD)" >> .claude/checkpoints.log
 ```
 
-4. Report:
+1. Report:
 
 ```text
 Checkpoint created: <name>
@@ -45,7 +45,7 @@ Time:   <timestamp>
 git diff <checkpoint-sha>..HEAD --stat
 ```
 
-3. Report:
+1. Report:
 
 ```text
 Checkpoint: <name> (<sha>)

@@ -28,25 +28,31 @@ Present in this format:
 
 ```markdown
 ## Requirements
+
 - [bullet list of what will be built]
 
 ## Affected Files
+
 - `path/to/file` — what changes and why
 
 ## Implementation Phases
 
 ### Phase 1: [name]
+
 - Step 1
 - Step 2
 
 ### Phase 2: [name]
+
 - Step 1
 - Step 2
 
 ## Risks
+
 - [HIGH/MEDIUM/LOW]: description and mitigation
 
 ## Open Questions
+
 - [anything that needs clarification]
 ```
 
@@ -55,6 +61,7 @@ Present in this format:
 Do NOT write any code until the user explicitly approves.
 
 Accept responses like:
+
 - "ok" / "proceed" / "yes" — start implementation
 - "modify: ..." — adjust the plan
 - "skip phase X" — reorder or remove phases

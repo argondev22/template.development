@@ -39,7 +39,7 @@ Severity levels: CRITICAL, HIGH, MEDIUM, LOW
 End with a summary table:
 
 | Severity | Count |
-|----------|-------|
+| -------- | ----- |
 | CRITICAL | n     |
 | HIGH     | n     |
 | MEDIUM   | n     |

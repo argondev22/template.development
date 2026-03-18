@@ -14,23 +14,23 @@ Sync documentation with the current codebase state.
 
 Scan for these files and extract information:
 
-| Source | Generates |
-|--------|-----------|
-| `package.json` / `Makefile` | Available commands reference |
-| `.env.example` / `.env.template` | Environment variable docs |
-| `openapi.yaml` / route files | API endpoint reference |
-| `Dockerfile` / `docker-compose.yml` | Infrastructure setup docs |
-| `CLAUDE.md` | Project overview (keep in sync) |
+| Source                              | Generates                       |
+| ----------------------------------- | ------------------------------- |
+| `package.json` / `Makefile`         | Available commands reference    |
+| `.env.example` / `.env.template`    | Environment variable docs       |
+| `openapi.yaml` / route files        | API endpoint reference          |
+| `Dockerfile` / `docker-compose.yml` | Infrastructure setup docs       |
+| `CLAUDE.md`                         | Project overview (keep in sync) |
 
 ### 2. Update command reference
 
 Read `package.json` scripts and `Makefile` targets. Update the relevant documentation with a commands table:
 
 ```markdown
-| Command | Description |
-|---------|-------------|
-| `make init` | Initialize project |
-| `npm run format` | Run formatter |
+| Command          | Description        |
+| ---------------- | ------------------ |
+| `make init`      | Initialize project |
+| `npm run format` | Run formatter      |
 ```
 
 ### 3. Update environment docs
@@ -39,7 +39,7 @@ If `.env.example` exists, extract variables and document:
 
 ```markdown
 | Variable | Required | Description | Example |
-|----------|----------|-------------|---------|
+| -------- | -------- | ----------- | ------- |
 ```
 
 ### 4. Staleness check
