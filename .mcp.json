@@ -1,9 +1,5 @@
 {
   "mcpServers": {
-    "serena": {
-      "command": "uvx",
-      "args": ["--from", "git+https://github.com/oraios/serena", "serena", "start-mcp-server"]
-    },
     "MCP_DOCKER": {
       "type": "stdio",
       "command": "docker",
