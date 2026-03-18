@@ -1,5 +1,5 @@
 ---
-name: fix-ci
+name: handle-review
 description: Check PR status checks (CI) and fix failing checks. Use when a PR has failing CI or you want to verify CI will pass before pushing.
 argument-hint: "[PR number or branch name]"
 ---
