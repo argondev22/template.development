@@ -1,93 +1,167 @@
-# Template for Development
+# 開発テンプレート
 
-## Overview
+## 概要
 
-A comprehensive project template that provides a ready-to-use development environment with modern tooling and best practices. This template accelerates project setup by including pre-configured development containers, GitHub workflows, and standardized templates for issues and pull requests.
+プロジェクトの立ち上げを加速するための開発テンプレートリポジトリ。標準化されたプロジェクト構成、CI/CD、開発コンテナ、GitHub テンプレート、そして Claude Code によるAI支援開発のスキルセットを同梱している。
 
-## Features
+## 特徴
 
-### 🚀 Development Environment Template
+- **Dev Containers** — VSCode ですぐに使える開発環境
+- **Docker Compose** — マルチサービスの環境管理
+- **GitHub テンプレート** — Issue / PR テンプレートの標準化
+- **CI/CD** — Prettier, markdownlint, yamllint, actionlint による自動チェック
+- **Conventional Commits** — commitlint + husky によるコミット規約の強制
+- **Claude Code スキル** — AI支援開発の12スキルセット
 
-- **Dev Containers**: Instant development environment setup with VSCode
-- **Docker Compose**: Easy multi-service environment management
-- **GitHub Templates**: Standardized issue and PR templates
-
-### 📱 Sample Application
-
-- **Full-Stack Architecture**: 3-tier architecture with React + FastAPI + PostgreSQL
-- **Real-time Features**: Instant data updates with button clicks
-- **Data Persistence**: Click history management with PostgreSQL
-- **API Documentation**: Auto-generated documentation with Swagger UI
-- **Responsive UI**: Modern web interface
-
-## Architecture
-
-```mermaid
-sequenceDiagram
-    autonumber
-    actor CL as Client (React)
-    participant SV as Server (FastAPI)
-    participant DB as Database (PostgreSQL)
-    CL->>SV: HTTP Request (API Call)
-    SV->>DB: SQL Query
-    DB->>SV: Query Result
-    SV->>CL: JSON Response
-```
-
-## Directory Structure
+## ディレクトリ構成
 
 ```text
 .
-├── .devcontainer/                # Development container configuration
-├── .github/                      # GitHub configuration
-│   ├── ISSUE_TEMPLATE/           # GitHub issue templates
-│   └── PULL_REQUEST_TEMPLATE/    # GitHub PR templates
-├── .vscode/                      # VSCode configuration
-├── app/                          # Complete application directory (source code, Docker configs, etc.)
-│   ├── client/                   # React frontend application
-│   └── server/                   # FastAPI backend application
-├── bin/                          # Utility scripts
-└── docs/                         # Project documentation
+├── app/                    # アプリケーションソースコード
+│   ├── client/             # フロントエンド
+│   └── server/             # バックエンド
+├── docs/                   # プロジェクトドキュメント
+│   ├── REQUIREMENTS.md     # 仕様書
+│   ├── DESIGN.md           # 設計書
+│   ├── TASK.md             # タスクリスト
+│   ├── LOG.md              # 開発ログ
+│   └── research/           # 市場調査
+├── infra/                  # インフラ構成（IaC）
+├── .claude/skills/         # Claude Code カスタムスキル
+├── .github/                # GitHub Actions, テンプレート
+├── .husky/                 # Git フック
+└── .devcontainer/          # 開発コンテナ設定
 ```
 
-> **📖 For detailed information about each service, please refer to their respective README files:**
->
-> - **Client (React)**: [`app/client/README.md`](app/client/README.md)
-> - **Server (FastAPI)**: [`app/server/README.md`](app/server/README.md)
+## セットアップ
 
-## Getting Started
-
-### Prerequisites
+### 前提条件
 
 - [Docker](https://www.docker.com/)
-- [Dev Containers](https://containers.dev/) extension (`anysphere.remote-containers`) for VSCode
-- UNIX/Linux-based OS (Windows users should use WSL2)
+- [Node.js](https://nodejs.org/)（commitlint, Prettier 用）
+- [Dev Containers](https://containers.dev/) 拡張機能（VSCode 用、任意）
+- UNIX/Linux 系 OS（Windows は WSL2 を推奨）
 
-### Quick Start
+### クイックスタート
 
-1. **Clone the repository**
+1. リポジトリをクローンする
 
    ```bash
    git clone <repo-url> <project-name>
    cd <project-name>
    ```
 
-2. **Initialize the project**
+2. 依存関係をインストールする
 
    ```bash
-   make init
+   make install
    ```
 
-3. **Open in Dev Container**
-   - Press `Ctrl+Shift+P` (or `Cmd+Shift+P` on Mac) in VSCode
-   - Type `Dev Containers: Open Folder in Container`
-   - Select and execute the command
-
-4. **Start the development environment**
+3. 開発環境を起動する
 
    ```bash
    make up
    ```
 
-5. **Access your application**
-   - Open your browser and navigate to: `http://localhost:3000`
+## 開発フローとスキル
+
+このテンプレートは、4つのドキュメントを中心にした開発フローを採用している。各工程に対応する Claude Code スキルを使って AI と協働で開発を進める。
+
+```mermaid
+graph TD
+  REQ["📄 REQUIREMENTS.md\n仕様書"]
+  DES["📄 DESIGN.md\n設計書"]
+  TASK["📄 TASK.md\nタスクリスト"]
+  CODE["💻 ソースコード"]
+  LOG["📄 LOG.md\n開発ログ"]
+
+  REQ -->|"設計（/design）"| DES
+  DES -->|"タスク分解（/task）"| TASK
+  TASK -->|"実装（/impl）"| CODE
+
+  CODE -->|"設計との乖離を記録\n（/impl が自動記録）"| LOG
+  CODE -->|"デベロッパーの\nフィードバック（/log）"| LOG
+  CODE -.->|"ドキュメントとの\n差分チェック（/diff）"| LOG
+
+  LOG -->|"AI 分析・\nコメント付与（/log）"| LOG
+
+  LOG -.->|"軽微: タスク追加（/task）"| TASK
+  LOG -.->|"中程度: 設計変更（/design）"| DES
+  LOG -.->|"大きい: 仕様変更（/spec）"| REQ
+
+  REQ -->|"連鎖更新（/design）"| DES
+  DES -->|"連鎖更新（/task）"| TASK
+```
+
+### 順方向（計画→実装）
+
+1. **仕様書を書く**（`/spec`）— プロダクトのビジョン、機能要件、非機能要件を定義する
+2. **設計書を書く**（`/design`）— 仕様書を基に、実装に迷わないレベルの設計を作成する
+3. **タスクに分解する**（`/task`）— 設計書を基に、上から順にやれば完成するタスクリストを作る
+4. **実装する**（`/impl`）— タスクリストに従ってコードを書く
+5. **レビュー→コミット→PR**（`/review` → `/commit` → `/pr`）
+
+### フィードバックループ
+
+実装中やレビュー後に気づいたことは、開発ログ（LOG.md）に記録する。デベロッパーも AI もログに発言でき、AI が分析してコメントを返し、影響範囲に応じた対応を提案する。
+
+- **軽微**（ボタンの位置ずれ等）→ `/task` でタスク追加して対応
+- **中程度**（フィルター機能の追加等）→ `/design` で設計を更新してから `/task` でタスク化
+- **大きい**（認証方式の変更等）→ `/spec` で仕様から見直し
+
+### スキル一覧
+
+| スキル             | コマンド  | 説明                                               |
+| ------------------ | --------- | -------------------------------------------------- |
+| セッション初期化   | `/init`   | プロジェクトの状態を把握してサマリーを出力する     |
+| 仕様書             | `/spec`   | REQUIREMENTS.md を作成・更新する                   |
+| 設計書             | `/design` | DESIGN.md を作成・更新する                         |
+| タスク分解         | `/task`   | TASK.md を作成・更新する                           |
+| 実装               | `/impl`   | タスクに従ってコードを書く                         |
+| コードレビュー     | `/review` | 未コミットの変更をレビューする                     |
+| 開発ログ           | `/log`    | フィードバックの記録・AI 分析                      |
+| ドキュメント差分   | `/diff`   | ドキュメントとコードの乖離を検出して LOG.md に記録 |
+| コミット           | `/commit` | Conventional Commits でコミットする                |
+| PR 作成            | `/pr`     | プルリクエストを作成する                           |
+| PR 修正            | `/pr-fix` | CI 失敗 + レビュー指摘を修正する                   |
+| プロジェクト初期化 | `/setup`  | テンプレートから新規プロジェクトをセットアップする |
+
+### 使い方の例
+
+**新規プロジェクト開始:**
+
+```text
+/setup → /spec → /design → /task → /impl → /review → /commit → /pr
+```
+
+**フィードバック対応:**
+
+```text
+/log ここの画面遷移がわかりにくい → /log → /design → /task → /impl
+```
+
+**セッション開始:**
+
+```text
+/init → 状況を確認 → 作業を開始
+```
+
+## コマンド
+
+すべての操作は `make` コマンドから実行する。`make help` で一覧を確認できる。
+
+```bash
+make install  # 依存関係をインストール
+make format   # Prettier + markdownlint で自動修正
+make lint     # 全リンターチェック（CI と同等）
+make build    # Docker コンテナをビルド
+make up       # Docker コンテナを起動
+make down     # Docker コンテナを停止
+make logs     # Docker コンテナログを表示
+make clean    # Docker リソースを削除
+make help     # コマンド一覧を表示
+```
+
+## ライセンス
+
+[MIT](LICENSE)
