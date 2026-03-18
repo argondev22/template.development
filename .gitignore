@@ -218,3 +218,6 @@ $RECYCLE.BIN/
 # End of https://www.toptal.com/developers/gitignore/api/linux,macos,windows,node
 
 tmp/
+
+# MCP server configuration (may contain API tokens/secrets)
+.mcp.json

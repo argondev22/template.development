@@ -26,6 +26,7 @@
 - `credentials.json`, `serviceAccountKey.json` などの認証情報ファイル
 - `*.pem`, `*.key`, `*.p12` などの秘密鍵・証明書
 - `*secret*`, `*token*` を含むファイル名
+- `.mcp.json` (MCP サーバー設定 — API トークンを含みうる。テンプレートは `.mcp.example.json` を使用)
 
 ### 対象コンテンツ
 
