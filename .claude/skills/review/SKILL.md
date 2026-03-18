@@ -1,5 +1,5 @@
 ---
-name: code-review
+name: review
 description: 未コミットの変更に対してセキュリティ・品質のコードレビューを行う。コミット前に使用する。
 ---
 

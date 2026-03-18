@@ -1,5 +1,5 @@
 ---
-name: init-project
+name: setup
 description: テンプレートから新規プロジェクトを初期化する。README、CLAUDE.md、Makefile、package.json、docs を更新する。
 disable-model-invocation: true
 argument-hint: "[プロジェクト名 (optional、git remote から自動検出)]"

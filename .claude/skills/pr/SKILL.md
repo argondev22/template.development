@@ -1,11 +1,11 @@
 ---
-name: create-pr
+name: pr
 description: 現在のブランチからプルリクエストを作成する。
 disable-model-invocation: true
-argument-hint: "[PRタイトル (optional)]"
+argument-hint: "[PR タイトル (optional)]"
 ---
 
-# Create PR
+# PR 作成
 
 現在のブランチからプルリクエストを作成する。
 
@@ -84,14 +84,11 @@ EOF
 ### 5. 完了報告
 
 ```text
-PR Created
+PR を作成しました
 ═══════════════════════════════════════
 URL:      <PR の URL>
 Title:    <タイトル>
 Branch:   <current-branch> → main
 Commits:  <N commits>
-
-Next steps:
-  - /pr-review で CI の状態を確認する
 ═══════════════════════════════════════
 ```

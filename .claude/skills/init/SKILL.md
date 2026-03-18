@@ -1,10 +1,10 @@
 ---
-name: init-session
+name: init
 description: セッション開始時にプロジェクトの状態を把握する。最初に実行するスキル。
 disable-model-invocation: true
 ---
 
-# Init Session
+# セッション初期化
 
 セッション開始時にプロジェクトの現状を把握し、次の作業に繋げる。
 

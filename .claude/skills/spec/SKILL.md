@@ -1,11 +1,11 @@
 ---
-name: requirements
+name: spec
 description: 市場調査を基に仕様書（docs/REQUIREMENTS.md）を作成・更新する。
 disable-model-invocation: true
 argument-hint: "[テーマや機能の説明 (optional)]"
 ---
 
-# Requirements
+# 仕様書の作成
 
 市場調査を基に仕様書を作成する。
 
@@ -118,14 +118,10 @@ ls docs/research/
 ### 6. 完了報告
 
 ```text
-Requirements Updated
+仕様書を更新しました
 ═══════════════════════════════════════
 File:     docs/REQUIREMENTS.md
 Mode:     <新規作成 / 更新>
 Sections: <更新したセクション一覧>
-
-Next steps:
-  - /design で設計に進む
-  - docs/research/ に調査を追加して精度を上げる
 ═══════════════════════════════════════
 ```

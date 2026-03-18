@@ -1,11 +1,11 @@
 ---
-name: implement
+name: impl
 description: タスクリストを基に実装を行う。未完了の中タスクを上から順に、または指定タスクを実装する。
 disable-model-invocation: true
 argument-hint: "[タスク番号 (例: 1.2) or タスク名 (optional)]"
 ---
 
-# Implement
+# 実装
 
 タスクリストに基づいて実装を進める。
 
@@ -94,14 +94,13 @@ git checkout -b feat/<大タスクに対応する短い名前>
 - 秘密情報をハードコードしない
 - 設計書にない機能を勝手に追加しない
 - 判断に迷う場合はユーザーに確認する
-- **実装中に設計や仕様の変更が発生した場合は、必ず `docs/DESIGN.md` や `docs/REQUIREMENTS.md` も合わせて更新する。コードとドキュメントの乖離を放置しない**
 
 ### 6. 実装結果の報告
 
 中タスク内のすべての小タスクを完了したら報告する:
 
 ```text
-Implementation Complete
+実装完了
 ═══════════════════════════════════════
 Task:     <タスク番号> <中タスク名>
 Status:   <N/N completed>
@@ -109,18 +108,13 @@ Status:   <N/N completed>
 Changes:
   - <変更したファイル1>: <何をしたか>
   - <変更したファイル2>: <何をしたか>
-
-Next steps:
-  - /implement で次のタスクに進む
-  - /code-review で変更をレビューする
-  - /commit でコミットする
 ═══════════════════════════════════════
 ```
 
 途中でブロッカーがあり完了できなかった場合は、完了した分と残りを明示する:
 
 ```text
-Implementation Partial
+実装途中
 ═══════════════════════════════════════
 Task:     <タスク番号> <中タスク名>
 Status:   <M/N completed>
@@ -131,8 +125,5 @@ Completed:
 
 Remaining:
   - [ ] 小タスク3 — <ブロッカーの理由>
-
-Next steps:
-  - ブロッカーを解消して /implement <タスク番号> で再開する
 ═══════════════════════════════════════
 ```
