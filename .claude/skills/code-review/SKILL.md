@@ -1,91 +1,91 @@
 ---
 name: code-review
-description: Comprehensive security and quality review of uncommitted changes. Use when reviewing code before committing.
+description: 未コミットの変更に対してセキュリティ・品質のコードレビューを行う。コミット前に使用する。
 ---
 
-# Code Review
+# コードレビュー
 
-Comprehensive code review of uncommitted changes.
+未コミットの変更に対して包括的なコードレビューを行う。
 
 ## Procedure
 
-### 1. Gather changes
+### 1. 変更の取得
 
 ```bash
 git diff --name-only HEAD
 git diff HEAD
 ```
 
-If there are no changes, check staged files with `git diff --cached --name-only`.
-If still nothing, report "No changes to review." and stop.
+変更がない場合は `git diff --cached --name-only` でステージング済みファイルを確認する。
+それでもなければ「レビュー対象の変更がありません。」と報告して終了する。
 
-### 2. Review each changed file
+### 2. 各ファイルのレビュー
 
-Analyze every changed file against the checklist below. Read surrounding context when needed to understand intent.
+変更されたすべてのファイルを、以下のチェックリストに照らして分析する。意図を理解するために周辺のコードも必要に応じて読む。
 
-### 3. Output report
+### 3. レポート出力
 
-For each finding, output:
+検出した問題ごとに以下の形式で出力する:
 
 ```text
-[SEVERITY] file/path:line — description
-  → suggested fix
+[深刻度] file/path:line — 説明
+  → 修正案
 ```
 
-Severity levels: CRITICAL, HIGH, MEDIUM, LOW
+深刻度: CRITICAL, HIGH, MEDIUM, LOW
 
-### 4. Summary
+### 4. サマリー
 
-End with a summary table:
+最後にサマリーテーブルを出力する:
 
-| Severity | Count |
-| -------- | ----- |
-| CRITICAL | n     |
-| HIGH     | n     |
-| MEDIUM   | n     |
-| LOW      | n     |
+| 深刻度   | 件数 |
+| -------- | ---- |
+| CRITICAL | n    |
+| HIGH     | n    |
+| MEDIUM   | n    |
+| LOW      | n    |
 
-If CRITICAL or HIGH issues exist, clearly state the changes should NOT be committed until resolved.
-If no issues found, approve with a short confirmation.
+CRITICAL または HIGH がある場合は、解消するまでコミットすべきでないことを明示する。
+問題がなければ、承認のメッセージを出力する。
 
 ---
 
-## Checklist
+## チェックリスト
 
-### Security (CRITICAL)
+### セキュリティ (CRITICAL)
 
-- Hardcoded credentials, API keys, tokens, passwords
-- SQL injection (string concatenation in queries)
-- XSS vulnerabilities (unsanitized user input in HTML)
-- Command injection (unsanitized input in shell commands)
-- Path traversal (user input in file paths without validation)
-- Insecure deserialization
-- Sensitive data in logs or error messages
-- Missing authentication/authorization checks
-- Secrets or `.env` files being committed
+- ハードコードされた認証情報、API キー、トークン、パスワード
+- SQL インジェクション（クエリ内での文字列結合）
+- XSS 脆弱性（サニタイズされていないユーザー入力の HTML 出力）
+- コマンドインジェクション（サニタイズされていない入力のシェルコマンド使用）
+- パストラバーサル（バリデーションなしのファイルパスへのユーザー入力）
+- 安全でないデシリアライゼーション
+- ログやエラーメッセージ内の機密データ
+- 認証・認可チェックの欠落
+- シークレットや `.env` ファイルのコミット
 
-### Correctness (HIGH)
+### 正確性 (HIGH)
 
-- Logic errors, off-by-one, null/undefined mishandling
-- Missing error handling for I/O, network, or external calls
-- Race conditions or concurrency issues
-- Resource leaks (unclosed connections, file handles, listeners)
-- Incorrect type usage or unsafe type assertions
-- Broken error propagation (swallowed errors, empty catch blocks)
+- ロジックエラー、オフバイワン、null/undefined の不適切な処理
+- I/O、ネットワーク、外部呼び出しのエラーハンドリング欠落
+- 競合状態や並行処理の問題
+- リソースリーク（未クローズの接続、ファイルハンドル、リスナー）
+- 不正な型の使用や安全でない型アサーション
+- エラー伝播の破壊（握りつぶされたエラー、空の catch ブロック）
 
-### Maintainability (MEDIUM)
+### 保守性 (MEDIUM)
 
-- Functions exceeding ~50 lines or doing multiple unrelated things
-- Nesting depth > 4 levels
-- Duplicated logic that should be extracted
-- Dead code, unused imports, unreachable branches
-- Unclear naming (single-letter variables outside loops, misleading names)
-- Missing validation at system boundaries (API inputs, env vars)
-- TODO/FIXME/HACK comments without linked issue
+- 約 50 行を超える関数や、複数の無関係な処理を行う関数
+- ネストの深さが 4 段階超
+- 抽出すべき重複ロジック
+- デッドコード、未使用のインポート、到達不能なブランチ
+- 不明瞭な命名（ループ外の 1 文字変数、誤解を招く名前）
+- システム境界でのバリデーション欠落（API 入力、環境変数）
+- Issue に紐づいていない TODO/FIXME/HACK コメント
 
-### Style (LOW)
+### スタイル (LOW)
 
-- Inconsistent formatting (should be caught by Prettier, but flag if not)
-- Inconsistent naming conventions within the file
-- Debug statements (console.log, print, debugger) left in production code
-- Commented-out code blocks
+- 一貫性のないフォーマット（Prettier で検出されるべきだが、漏れがあればフラグ）
+- ファイル内での命名規約の不統一
+- 本番コードに残されたデバッグ文（console.log, print, debugger）
+- コメントアウトされたコードブロック

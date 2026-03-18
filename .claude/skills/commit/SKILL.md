@@ -1,18 +1,18 @@
 ---
 name: commit
-description: Create a well-structured conventional commit. Use when committing changes to git.
+description: Conventional Commits に従ったコミットを作成する。変更を git にコミットするときに使用する。
 disable-model-invocation: true
 ---
 
-# Commit
+# コミット
 
-Create a well-structured commit from the current changes.
+現在の変更から適切なコミットを作成する。
 
 ## Procedure
 
-### 1. Check current state
+### 1. 現在の状態を確認
 
-Run in parallel:
+以下を並列で実行する:
 
 ```bash
 git status
@@ -21,78 +21,78 @@ git diff
 git log --oneline -5
 ```
 
-If there are no changes (no untracked, no modified, no staged), report "Nothing to commit." and stop.
+変更がない場合（未追跡、変更、ステージング済みのいずれもなし）は「コミットする変更がありません。」と報告して終了する。
 
-### 2. Review changes
+### 2. 変更のレビュー
 
-Analyze all changes (staged + unstaged + untracked) to understand:
+すべての変更（ステージング済み + 未ステージ + 未追跡）を分析して以下を把握する:
 
-- What was changed and why
-- Which files are related and belong in the same commit
-- Whether any files should NOT be committed (secrets, `.env`, large binaries, temporary files)
+- 何が変更されたか、なぜ変更されたか
+- どのファイルが関連し、同じコミットに含めるべきか
+- コミットすべきでないファイルがないか（シークレット、`.env`、大きなバイナリ、一時ファイル）
 
-If changes span multiple unrelated concerns, suggest splitting into separate commits and ask the user which to commit first.
+変更が複数の無関係な関心事にまたがる場合は、コミットの分割を提案し、どれを先にコミットするかユーザーに確認する。
 
-### 3. Stage files
+### 3. ファイルのステージング
 
-Stage the relevant files by name. Prefer `git add <file>...` over `git add -A` or `git add .`.
+関連ファイルをファイル名で指定してステージングする。`git add -A` や `git add .` より `git add <file>...` を優先する。
 
-Never stage:
+ステージングしないもの:
 
-- `.env`, `.env.local`, or files containing secrets
-- Large binary files not tracked by Git LFS
-- OS/IDE artifacts (`.DS_Store`, `.idea/`, etc.)
+- `.env`, `.env.local`、またはシークレットを含むファイル
+- Git LFS で管理されていない大きなバイナリファイル
+- OS/IDE のアーティファクト（`.DS_Store`, `.idea/` など）
 
-Warn the user if any of these are detected.
+これらが検出された場合はユーザーに警告する。
 
-### 4. Determine commit type
+### 4. コミットタイプの決定
 
-Choose the appropriate type based on the changes:
+変更内容に基づいて適切なタイプを選択する:
 
-| Type       | When to use                              |
-| ---------- | ---------------------------------------- |
-| `feat`     | New feature or capability                |
-| `fix`      | Bug fix                                  |
-| `docs`     | Documentation only                       |
-| `style`    | Formatting, whitespace (no logic change) |
-| `refactor` | Code restructuring (no feature/fix)      |
-| `perf`     | Performance improvement                  |
-| `test`     | Adding or updating tests                 |
-| `build`    | Build system or external dependencies    |
-| `ci`       | CI/CD configuration                      |
-| `chore`    | Maintenance tasks                        |
-| `revert`   | Reverting a previous commit              |
-| `deps`     | Dependency updates                       |
-| `docker`   | Docker configuration changes             |
+| タイプ     | 使用場面                               |
+| ---------- | -------------------------------------- |
+| `feat`     | 新機能の追加                           |
+| `fix`      | バグ修正                               |
+| `docs`     | ドキュメントのみの変更                 |
+| `style`    | フォーマット、空白（ロジック変更なし） |
+| `refactor` | コードの再構築（機能追加/修正なし）    |
+| `perf`     | パフォーマンス改善                     |
+| `test`     | テストの追加・更新                     |
+| `build`    | ビルドシステムまたは外部依存関係       |
+| `ci`       | CI/CD の設定変更                       |
+| `chore`    | メンテナンスタスク                     |
+| `revert`   | 以前のコミットの取り消し               |
+| `deps`     | 依存関係の更新                         |
+| `docker`   | Docker 設定の変更                      |
 
-### 5. Write commit message
+### 5. コミットメッセージの作成
 
-Format: `<type>: <subject>`
+フォーマット: `<type>: <subject>`
 
-Rules (from commitlint config):
+ルール（commitlint 設定に基づく）:
 
-- Type: required, lowercase
-- Subject: required, no trailing period, header max 100 chars
-- Body: optional, blank line before, max 100 chars per line
-- Focus on **why**, not what (the diff shows the what)
+- type: 必須、小文字
+- subject: 必須、末尾にピリオドを付けない、ヘッダーは最大 100 文字
+- body: 任意、前に空行を入れる、各行最大 100 文字
+- **what ではなく why** にフォーカスする（what は diff でわかる）
 
-Match the language style of recent commits (`git log --oneline -5`).
+直近のコミット（`git log --oneline -5`）の言語スタイルに合わせる。
 
-### 6. Commit
+### 6. コミットの実行
 
-Create the commit using a heredoc:
+heredoc を使用してコミットを作成する:
 
 ```bash
 git commit -m "$(cat <<'EOF'
 <type>: <subject>
 
-<optional body>
+<任意の body>
 
 Co-Authored-By: Claude <noreply@anthropic.com>
 EOF
 )"
 ```
 
-### 7. Verify
+### 7. 確認
 
-Run `git status` to confirm the commit succeeded and the working tree is clean (or only expected files remain).
+`git status` を実行してコミットが成功し、ワーキングツリーがクリーン（または想定通りのファイルのみ残っている）ことを確認する。

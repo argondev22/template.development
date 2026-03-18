@@ -1,124 +1,118 @@
 ---
-name: handle-review
-description: Check PR status checks (CI) and fix failing checks. Use when a PR has failing CI or you want to verify CI will pass before pushing.
-argument-hint: "[PR number or branch name]"
+name: pr-review
+description: PR のステータスチェック（CI）を確認し、失敗しているチェックを修正する。
+argument-hint: "[PR 番号またはブランチ名 (optional)]"
 ---
 
-# Fix CI
+# PR レビュー
 
-Check PR status checks and fix any failures.
+PR のステータスチェックを確認し、失敗があれば修正する。
 
 ## Procedure
 
-### 1. Get CI status
+### 1. CI ステータスの取得
 
-If a PR number or branch is provided via `$ARGUMENTS`, use it. Otherwise detect from current branch.
+`$ARGUMENTS` で PR 番号またはブランチが指定されている場合はそれを使用する。なければ現在のブランチから検出する。
 
 ```bash
-# Get current branch if no argument
 git branch --show-current
-
-# Check PR status checks
 gh pr checks $ARGUMENTS
-
-# If no PR exists yet, get the workflow runs for the branch
 gh run list --branch $(git branch --show-current) --limit 5
 ```
 
-If all checks pass, report "All CI checks passing." and stop.
+すべてのチェックが通っている場合は「すべての CI チェックが通っています。」と報告して終了する。
 
-### 2. Identify failures
+### 2. 失敗の特定
 
-For each failing check, get the detailed log:
+失敗しているチェックごとに詳細ログを取得する:
 
 ```bash
-# Get failed job logs
 gh run view <run-id> --log-failed
 ```
 
-Parse the logs to identify:
+ログから以下を特定する:
 
-- Which job failed (prettier, markdownlint, yamllint, actionlint, build, tests, etc.)
-- The specific error messages and file locations
-- Whether it's a formatting issue, lint error, or build failure
+- どのジョブが失敗したか（prettier, markdownlint, yamllint, actionlint, build, tests など）
+- 具体的なエラーメッセージとファイルの場所
+- フォーマットの問題か、リントエラーか、ビルドエラーか
 
-### 3. Fix by category
+### 3. カテゴリ別の修正
 
-#### Prettier failures
+#### Prettier の失敗
 
 ```bash
 npm run format
 ```
 
-Then check which files were modified and review the changes.
+変更されたファイルを確認し、変更内容をレビューする。
 
-#### markdownlint failures
+#### markdownlint の失敗
 
 ```bash
 npm run format:markdown
 ```
 
-For rules that can't be auto-fixed, read the error, fix manually.
+自動修正できないルールは、エラーを読んで手動で修正する。
 
-#### yamllint failures
+#### yamllint の失敗
 
-Read the error output, fix YAML formatting issues (indentation, trailing spaces, line length, etc.) in the reported files.
+エラー出力を読み、報告されたファイルの YAML フォーマット（インデント、末尾の空白、行の長さなど）を修正する。
 
-#### actionlint failures
+#### actionlint の失敗
 
-Read the error, fix GitHub Actions workflow syntax issues in `.github/workflows/`.
+エラーを読み、`.github/workflows/` 内の GitHub Actions ワークフローの構文を修正する。
 
-#### Build failures
+#### ビルドの失敗
 
-Invoke the `/build-fix` skill workflow.
+エラーログを分析し、ビルドエラーの原因を特定して修正する。
 
-#### Test failures
+#### テストの失敗
 
-Read test output, identify failing tests, fix the root cause (not the test assertion unless the test is wrong).
+テスト出力を読み、失敗しているテストを特定し、根本原因を修正する（テスト自体が間違っている場合を除き、テストのアサーションではなくコードを修正する）。
 
-### 4. Verify locally
+### 4. ローカルでの検証
 
-Run the same checks that CI runs:
+CI と同じチェックをローカルで実行する:
 
 ```bash
 npm run format:check
 npm run lint:markdown
 ```
 
-For yamllint (if installed locally):
+yamllint がローカルにインストールされている場合:
 
 ```bash
 yamllint .
 ```
 
-### 5. Commit the fixes
+### 5. 修正のコミット
 
-If local verification passes and there are changes, automatically commit using the `/commit` skill workflow:
+ローカル検証が通り、変更がある場合は `/commit` スキルでコミットする:
 
-- Stage only the files that were modified by the fixes
-- Use commit type `style` for formatting fixes, `fix` for lint/build/test fixes
-- Subject should reference CI, e.g., `fix: resolve failing CI checks (prettier, markdownlint)`
+- 修正で変更されたファイルのみをステージングする
+- フォーマット修正には `style`、リント/ビルド/テスト修正には `fix` を使用する
 
-### 6. Push and report
+### 6. プッシュと報告
 
-Push the commit to the remote branch, then report:
+コミットをリモートブランチにプッシュし、報告する:
 
 ```text
-CI Fix Results
-──────────────
-Checked:  <PR number or branch>
-Failures: n found, n fixed
+CI 修正結果
+═══════════════════════════════════════
+対象:     <PR 番号またはブランチ>
+失敗:     N 件検出、N 件修正
 
-Fixed:
-- prettier: n files reformatted
-- markdownlint: n issues fixed
+修正済み:
+  - prettier: N ファイル再フォーマット
+  - markdownlint: N 件修正
 
-Remaining:
-- (any issues that couldn't be auto-fixed)
+未解決:
+  - (自動修正できなかった問題)
 
-Local verification: PASS
-Committed: <sha>
-Pushed: <branch>
+ローカル検証: PASS
+コミット:   <sha>
+プッシュ:   <branch>
+═══════════════════════════════════════
 ```
 
-If there are remaining issues that couldn't be auto-fixed, list them with suggestions.
+自動修正できなかった問題がある場合は、提案とともに一覧を表示する。
