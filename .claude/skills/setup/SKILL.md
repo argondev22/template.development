@@ -29,13 +29,13 @@ git remote get-url origin 2>/dev/null
 - **技術スタック**（例: React + FastAPI + PostgreSQL）— 必ず確認する
 - **リポジトリ URL** — git remote から取得、または確認
 
-### 2. ベース初期化の実行
+### 2. 依存関係のインストール
 
 ```bash
-make init
+make install
 ```
 
-devcontainer と docker-compose のサンプルファイルをコピーする。
+npm パッケージ（commitlint, Prettier, husky 等）をインストールする。
 
 ### 3. package.json の更新
 

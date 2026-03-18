@@ -26,7 +26,6 @@
 │   ├── TASK.md             # タスクリスト
 │   ├── LOG.md              # 開発ログ
 │   └── research/           # 市場調査
-├── infra/                  # インフラ構成（IaC）
 ├── .claude/skills/         # Claude Code カスタムスキル
 ├── .github/                # GitHub Actions, テンプレート
 ├── .husky/                 # Git フック
@@ -51,17 +50,13 @@
    cd <project-name>
    ```
 
-2. 依存関係をインストールする
+2. Claude Code でプロジェクトをセットアップする
 
    ```bash
-   make install
+   /setup
    ```
 
-3. 開発環境を起動する
-
-   ```bash
-   make up
-   ```
+   `/setup` が依存関係のインストール（`make install`）、各種設定ファイルの更新を一括で行う。
 
 ## 開発フローとスキル
 
@@ -109,7 +104,7 @@ graph TD
 - **中程度**（フィルター機能の追加等）→ `/design` で設計を更新してから `/task` でタスク化
 - **大きい**（認証方式の変更等）→ `/spec` で仕様から見直し
 
-### スキル一覧
+### 主要なスキル一覧
 
 | スキル             | コマンド  | 説明                                               |
 | ------------------ | --------- | -------------------------------------------------- |
@@ -148,19 +143,7 @@ graph TD
 
 ## コマンド
 
-すべての操作は `make` コマンドから実行する。`make help` で一覧を確認できる。
-
-```bash
-make install  # 依存関係をインストール
-make format   # Prettier + markdownlint で自動修正
-make lint     # 全リンターチェック（CI と同等）
-make build    # Docker コンテナをビルド
-make up       # Docker コンテナを起動
-make down     # Docker コンテナを停止
-make logs     # Docker コンテナログを表示
-make clean    # Docker リソースを削除
-make help     # コマンド一覧を表示
-```
+すべての操作は `make` コマンドから実行する。利用可能なコマンドは `make help` で確認できる。
 
 ## ライセンス
 
