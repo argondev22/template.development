@@ -62,10 +62,10 @@ git branch --show-current
 - `main` にいる場合 → 対象タスクが属する**大タスク**の名前で作業ブランチを作成する:
 
 ```bash
-git checkout -b feat/<大タスクに対応する短い名前>
+git checkout -b feature/<大タスクに対応する短い名前>
 ```
 
-例: 大タスク「2. ユーザー認証」→ `feat/user-auth`
+例: 大タスク「2. ユーザー認証」→ `feature/user-auth`
 
 同じ大タスク内の中タスクはすべてこのブランチで実装する。
 
