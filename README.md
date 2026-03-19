@@ -1,4 +1,4 @@
-# 開発テンプレート
+# template.development
 
 ## 概要
 
