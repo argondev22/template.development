@@ -1,5 +1,5 @@
 ---
-name: spec
+name: req
 description: 市場調査を基に仕様書（docs/REQUIREMENTS.md）を作成・更新する。
 disable-model-invocation: true
 argument-hint: "[テーマや機能の説明 (optional)]"
