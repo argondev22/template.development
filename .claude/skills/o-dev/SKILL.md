@@ -17,7 +17,7 @@ argument-hint: "[タスク番号 (例: 1.2) or タスク名 (optional)]"
 
 `$ARGUMENTS` が指定されている場合はそのまま `/impl` に渡す。
 
-```
+```text
 /impl $ARGUMENTS
 ```
 
@@ -27,7 +27,7 @@ argument-hint: "[タスク番号 (例: 1.2) or タスク名 (optional)]"
 
 実装が完了したら、テストを実行する。
 
-```
+```text
 /test
 ```
 
@@ -38,7 +38,7 @@ argument-hint: "[タスク番号 (例: 1.2) or タスク名 (optional)]"
 
 ### 3. /review を実行
 
-```
+```text
 /review
 ```
 
