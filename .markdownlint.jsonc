@@ -5,6 +5,5 @@
   "MD041": false, // Allow non-heading first line
   "MD034": false, // Allow bare URLs
   "MD024": false, // Allow duplicate headings
-  "MD060": false, // Disable table style check
-  "MD029": { "style": "ordered" } // Use sequential numbers (1, 2, 3...)
+  "MD060": false // Disable table style check
 }
